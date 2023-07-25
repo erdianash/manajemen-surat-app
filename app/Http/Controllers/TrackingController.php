@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AsingModel;
+use App\Models\KawinModel;
+use App\Models\KelahiranModel;
+use App\Models\KematianModel;
+use App\Models\NpModel;
+use App\Models\PindahModel;
 use Illuminate\Http\Request;
 
 class TrackingController extends Controller
@@ -9,25 +15,23 @@ class TrackingController extends Controller
     public function getTrackingSurat($nama,$nama_tb){
         $data = "";
         if($nama_tb == 'asing'){
-            $data = modelAsing::select('*')->where('nama',$nama)->get();
+            $data = AsingModel::select('*')->where('nama',$nama)->get();
             }
         else if($nama_tb == 'np'){
-            $data = modelNp::select('*')->where('nama',$nama)->get();
+            $data = NpModel::select('*')->where('nama',$nama)->get();
         }
         else if($nama_tb == 'pindah'){
-            $data = modelPindah::select('*')->where('nama',$nama)->get();
+            $data = PindahModel::select('*')->where('nama',$nama)->get();
         }
         else if($nama_tb == 'kelahiran'){
-            $data = modelKelahiran::select('*')->where('nama',$nama)->get();
+            $data = KelahiranModel::select('*')->where('nama',$nama)->get();
         }
         else if($nama_tb == 'kematian'){
-            $data = modelKematian::select('*')->where('nama',$nama)->get();
+            $data = KematianModel::select('*')->where('nama',$nama)->get();
         }
         else if($nama_tb == 'kawin'){
-            $data = modelKawin::select('*')->where('nama',$nama)->get();
+            $data = KawinModel::select('*')->where('nama',$nama)->get();
         }
-        return view('tracking', compact('data'));
-}
-        
-    
+        return view('tracking', compact(['data','nama_tb']));
     }
+}

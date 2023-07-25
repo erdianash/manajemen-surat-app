@@ -32,7 +32,7 @@ Route::get('/home', function(){
 Route::get('/rekapitulasi/show-pdf',[App\Http\Controllers\RekapitulasiController::class,'showRowCounts'])->name('show-pdf');
 Route::get('/tracking', function(){
 return view('tracking');});
-Route::get('/tracking/{name}/{tb_name}', 'Tracking@getTrackingSurat')->name('redirect');
+Route::get('/tracking/{name}/{tb_name}', [\App\Http\Controllers\TrackingController::class,'getTrackingSurat'])->name('redirect');
 
 //Route::group(['middleware'=>['auth','cekLevel:staffpelum']], function (){
    // Route::get('/home', function(){
